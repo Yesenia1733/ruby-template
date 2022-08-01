@@ -1,0 +1,10 @@
+<h1>Pages#index</h1>
+<hr>
+<% if signed_in? %>
+<p>Signed In as: <%= current_user.email %></p>
+<p>Logout: <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?'} %></p>
+<% else %>
+<p>Not Signed In</p>
+<p>Vist Signin Page: <%= link_to "Sign in", new_user_session_path %></p>
+<p>Vist Signup Page: <%= link_to "Sign up", new_user_registration_path %></p>
+<% end %>
