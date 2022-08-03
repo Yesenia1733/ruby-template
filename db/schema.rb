@@ -10,11 +10,81 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_27_224806) do
+ActiveRecord::Schema.define(version: 2022_08_03_013559) do
+
+  create_table "equipment", force: :cascade do |t|
+    t.string "modelo"
+    t.string "marca"
+    t.string "tipo"
+    t.string "email"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_equipment_on_user_id"
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.integer "service_id", null: false
+    t.integer "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_details_on_order_id"
+    t.index ["service_id"], name: "index_order_details_on_service_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "date_in"
+    t.string "date_out"
+    t.integer "total_amount"
+    t.integer "status"
+    t.integer "equipment_id", null: false
+    t.integer "pre_order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["equipment_id"], name: "index_orders_on_equipment_id"
+    t.index ["pre_order_id"], name: "index_orders_on_pre_order_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pre_order_details", force: :cascade do |t|
+    t.integer "pre_order_id", null: false
+    t.integer "service_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pre_order_id"], name: "index_pre_order_details_on_pre_order_id"
+    t.index ["service_id"], name: "index_pre_order_details_on_service_id"
+  end
+
+  create_table "pre_orders", force: :cascade do |t|
+    t.string "fecha"
+    t.integer "total_amount"
+    t.integer "status"
+    t.string "sympton"
+    t.integer "equipment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["equipment_id"], name: "index_pre_orders_on_equipment_id"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "name"
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "stages", force: :cascade do |t|
+    t.integer "stage"
+    t.string "date_in"
+    t.string "date_out"
+    t.string "stage_description"
+    t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -28,8 +98,32 @@ ActiveRecord::Schema.define(version: 2022_07_27_224806) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "role"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "address"
+    t.string "phone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "warranties", force: :cascade do |t|
+    t.string "fecha_in"
+    t.string "fecha_out"
+    t.string "sympton"
+    t.integer "status"
+    t.integer "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_warranties_on_order_id"
+  end
+
+  add_foreign_key "equipment", "users"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "order_details", "services"
+  add_foreign_key "orders", "equipment"
+  add_foreign_key "orders", "pre_orders"
+  add_foreign_key "pre_order_details", "pre_orders"
+  add_foreign_key "pre_order_details", "services"
+  add_foreign_key "pre_orders", "equipment"
+  add_foreign_key "warranties", "orders"
 end
