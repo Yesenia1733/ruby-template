@@ -19,5 +19,14 @@ $theme-colors: (
     "primary": $blue,
     "success": $green,
     "info": $yellow,
-    "body-color": $gray
+    "body-color": $gray,
+    "b-red": $red,
+    "dark": $dark,
+    "darklight": $darklight
+    
 );
+
+
+.nav-link:hover{
+    background-color:$darklight !important;
+}
