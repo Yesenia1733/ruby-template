@@ -16,7 +16,7 @@
       <p>Signed In as: <%= current_user.email %></p>
       <p>Logout: <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?'} %></p>
     <% else %>
-      <h1 class="text-wtest">Guest View</h1>
+       <h1 class="text-wtest">Guest View</h1>
       <p>Vist Signin Page: <%= link_to "Sign in", new_user_session_path %></p>
       <p>Vist Signup Page: <%= link_to "Sign up", new_user_registration_path %></p>
     <% end %>
