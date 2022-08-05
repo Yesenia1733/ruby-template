@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_03_013559) do
+ActiveRecord::Schema.define(version: 2022_08_05_034105) do
 
   create_table "equipment", force: :cascade do |t|
     t.string "modelo"
@@ -69,7 +69,9 @@ ActiveRecord::Schema.define(version: 2022_08_03_013559) do
     t.integer "equipment_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
     t.index ["equipment_id"], name: "index_pre_orders_on_equipment_id"
+    t.index ["user_id"], name: "index_pre_orders_on_user_id"
   end
 
   create_table "services", force: :cascade do |t|
@@ -125,5 +127,6 @@ ActiveRecord::Schema.define(version: 2022_08_03_013559) do
   add_foreign_key "pre_order_details", "pre_orders"
   add_foreign_key "pre_order_details", "services"
   add_foreign_key "pre_orders", "equipment"
+  add_foreign_key "pre_orders", "users"
   add_foreign_key "warranties", "orders"
 end

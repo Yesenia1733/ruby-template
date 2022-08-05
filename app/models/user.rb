@@ -5,6 +5,7 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
 
   has_many :equipment
+  has_many :pre_orders
 
   def set_default_role
     self.role ||= :enduser
