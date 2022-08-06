@@ -10,3 +10,7 @@
 
 // CSS partials
 @import "components/index";
+
+.btn-primary {
+    --bs-btn-color: #fff;
+}
