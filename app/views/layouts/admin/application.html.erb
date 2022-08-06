@@ -8,14 +8,57 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
   </head>
 
-  <body>    
-    <% if user_signed_in? %>
-      <h1>Admin View</h1>
-      <p>Signed In as: <%= current_user.email %></p>
-      <p>Logout: <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?'} %></p>
-    <% end %>
-    <%= yield %>
+  <body> 
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-3 d-flex flex-column vh-100 flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;"> 
+          <div class="align-items-center text-white text-center">
+            <span class="fs-3">Admin View</span> 
+          </div>
+          <% if user_signed_in? %>
+            <span class="fs-6 text-center mt-3"> Signed In as: <%= current_user.email %></span>
+            <%= link_to destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?'} , class:"btn btn-darklight text-white mt-3" do %>
+              <i class="fas fa-sign-out-alt"></i><span class="ms-2">Sign Out</span>
+            <% end %>
+          <% end %>
+          <hr> 
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item"> 
+              <a href="#" class="nav-link active" aria-current="page">
+                  <i class="fas fa-tachometer-alt"></i><span class="ms-2">Dashboard</span>
+              </a>
+            </li> 
+            <li> 
+              <a href="#" class="nav-link text-white">
+                <i class="fas fa-clipboard-check"></i><span class="ms-2">Recepción</span> 
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-link text-white"> 
+                <i class="fas fa-cogs"></i><span class="ms-2">Operación</span> 
+              </a> 
+            </li>
+            <%if current_user.admin?%> 
+            <li> 
+              <a href="#" class="nav-link text-white"> 
+                <i class="fas fa-money-check-alt"></i><span class="ms-2">Facturación</span> 
+              </a> 
+            </li> 
+            <li>
+              <a href="#" class="nav-link text-white"> 
+                <i class="fa fa-bookmark"></i><span class="ms-2">Servicios</span>
+              </a> 
+            </li> 
+            <%end%>
+          </ul> 
+        </div>
+        <div class="col-9">
+          <%= yield %>
+        </div>
+      </div>
+    </div> 
   </body>
 </html>
