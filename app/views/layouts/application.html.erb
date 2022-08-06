@@ -5,18 +5,61 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
-  <body>
-    <% if user_signed_in? %>
-      <h1>User View</h1>
-      <p>Signed In as: <%= current_user.email %></p>
-      <p>Logout: <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?'} %></p>
+	<body class="h-100">
+		<% if user_signed_in? %>
+<!--Header -->
+	<header>  
+		<div class="container-fluid text-center mt-3">
+  			<div class="row">
+    			<div class="col-10">
+      				<p class="text-start fw-semibold">Welcome: <%= current_user.email %></p>
+    			</div>
+    			<div class="col-2 d-flex justify-content-end">
+    			<%= link_to "Sign out", destroy_user_session_path, class: "btn btn-warning mx-0",method: :delete, data: { confirm: 'Are you sure?'} %>
+    			</div>
+    		</div>
+	</header>
+<!-- End Header -->
+<!-- Main content & a-side -->
+	<main>
+		<div class="container-fluid text-center mt-3">
+  			<div class="row ">
+    			<div class="border-bottom border-end rounded-3 border-3 p-3 col-10">
+   					<%= yield %>
+        <!-- Borrar - Imagen de ejemplo - BORRAR -->      
+      				<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" fill="currentColor" class="bi bi-pie-chart-fill" viewBox="0 0 16 16">
+  						<path d="M15.985 8.5H8.207l-5.5 5.5a8 8 0 0 0 13.277-5.5zM2 13.292A8 8 0 0 1 7.5.015v7.778l-5.5 5.5zM8.5.015V7.5h7.485A8.001 8.001 0 0 0 8.5.015z"/>
+					</svg>
+        <!-- Borrar - Imagen de ejemplo - BORRAR -->  
+    			</div>
+    		<div class="col-2 d-flex nav justify-content-end">    
+      			<ul class="nav flex-column">
+  					<li class="nav-item">
+  						<a class=" btn btn-success text-white mt-3" href="#">Dashboard</a>
+  					</li>
+				</ul>    
+  			</div>
+		</div>
+	</main>
+<!-- End Main content & a-side -->
+<!-- Footer -->
+	<footer>
+		<div class="container-fluid text-center mt-3 fst-italic">
+    		<ul class="nav justify-content-center">
+    			<li class="nav-item"><p class="nav-link px-2 text-muted">Santiago, Calle 1 of. 402</p></li>
+    			<li class="nav-item"><p class="nav-link px-2 text-muted">hola@reparatodo.cl</p></li>
+    			<li class="nav-item"><p class="nav-link px-2 text-muted">+56 22 548 68 92</p></li>
+    			<li class="nav-item"><p class="nav-link px-2 text-muted">Horario de atención: Lunes a Jueves, de 09:00 a 17:30 hrs.</p></li>
+    		</ul>
+    		<p class="text-center text-muted">© 2022 Repara Todo corp.</p>
+		</div>
+	</footer>
+<!-- End Footer -->
     <% else %>
-
       <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="http://localhost:3000">
@@ -160,5 +203,5 @@
     </footer>
     <% end %>
     <%= yield %>
-  </body>
+	</body>
 </html>

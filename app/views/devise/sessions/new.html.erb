@@ -1,26 +1,53 @@
-<h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-lg-5 grid-margin stretch-card">
+              <!--form mask starts-->
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Inicio Sesion</h4>
+                   <form class="forms-sample">
+                    
+                    <div class="form-group">
+                      <div class="field">
+                        <%= f.label :email %><br />
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="field">
+                        <%= f.label :password %><br />
+                        <%= f.password_field :password, autocomplete: "current-password" %>
+                        </div>
+                     </div>
+                     
+                     <div class="form-group">
+                      <% if devise_mapping.rememberable? %>
+                      <div class="field">
+                      <%= f.check_box :remember_me %>
+                      <%= f.label :remember_me %>
+                      </div>
+                      <% end %>
+                      <br>
+                      <div class="actions">
+                        <%= f.submit "Iniciar Sesion", class: "btn btn-outline-body-color" %>
+                        
+                      </div>
+                      <br>
+                      <%= render "devise/shared/links" %>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <!--form mask ends-->
+            </div>
+            </div>
+          </div>
+              <!--form mask ends-->
+           </div>
+           <% end %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
