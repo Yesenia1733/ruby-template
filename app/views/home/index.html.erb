@@ -4,6 +4,8 @@
 <% if user_signed_in? %>
     <p>aca ba el home datsboard: usuario final</p>
 <% else %>
-    <p>aca ba el home guest</p>
+<%= link_to "Registrarse", new_user_registration_path, class: "btn btn-outline-primary"  %> 
+<%= link_to "Iniciar Sesion", new_user_session_path, class: "btn btn-outline-body-color"  %>
+    
 <% end %>
 
