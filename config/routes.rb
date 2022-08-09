@@ -15,5 +15,7 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     get '/', to: 'home#index'
+    resources :services
   end
 end
+

@@ -1,0 +1,19 @@
+<%= form_with(model: [:admin, service], local: false) do |form|%>
+    <div class="modal-body">
+        <div id="errors-area">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nombre del Servicio</label>
+            <%= form.text_field :name, class:"form-control"%>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Monto</label>
+            <%= form.text_field :amount, class:"form-control"%>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btn-close-new">Close</button>
+        <%= form.submit "save" , class: "btn btn-primary"%>
+    </div>
+<% end %>
+
