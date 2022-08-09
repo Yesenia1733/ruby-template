@@ -1,0 +1,6 @@
+<% if @service.errors.any? %>
+    $("#errors-area").html("<%= escape_javascript render('errors', service: @service) %>")
+<% else %>
+    $('#servicesTable').append("<%= escape_javascript render('service_row', service: @service) %>")
+    $('#btn-close-new').click()
+<% end %>

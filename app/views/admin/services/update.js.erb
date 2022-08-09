@@ -1,0 +1,6 @@
+<% if @service.errors.any? %>
+    $("#errors-area").html("<%= escape_javascript render('errors', service: @service) %>")
+<% else %>
+    $("#service_row_<%= @service.id %>").replaceWith("<%= escape_javascript render('service_row', service: @service) %>")
+    $("#btn-close-new").click()
+<% end %>

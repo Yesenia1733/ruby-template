@@ -1,1 +1,45 @@
 <p>Aca va el home - dashboard: admin - operador</p>
+  
+  <head>
+    <title>BootstrapDevise</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class='container-fluid'>
+      <div class='row'>
+        <div class='col-2'>
+          <div class="d-flex flex-column flex-shrink-0 bg-light vh-100" style="width: 100px;">
+            <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+                <li class="nav-item"> <a href="#" class="nav-link active py-3 border-bottom"> <i class="fa fa-home"></i> <small>Menu</small> </a> </li>
+                <li> <a href="#" class="nav-link py-3 border-bottom"> <i class="fa fa-dashboard"></i> <small>Lista de Servicios</small> </a> </li>
+                <li> <a href="#" class="nav-link py-3 border-bottom"> <i class="fa fa-first-order"></i> <small>Nuevos Servicios</small> </a> </li>
+                <li> <a href="#" class="nav-link py-3 border-bottom"> <i class="fa fa-cog"></i> <small>Modificar Servicios</small> </a> </li>
+                <li> <a href="#" class="nav-link py-3 border-bottom"> <i class="fa fa-bookmark"></i> <small>Eliminar Servicios</small> </a> </li>
+            </ul>
+            <div class="dropdown border-top"> <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false"> <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle"> </a>
+              <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+                  <li><a class="dropdown-item" href="#">New project...</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li>
+                      <hr class="dropdown-divider">
+                  </li>
+                  <li> <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?'} %></p> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class='col-10'>
+           <%= yield %>
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+        </div>
+      <div>
+    <div>
+  </body>

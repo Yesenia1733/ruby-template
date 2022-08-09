@@ -15,6 +15,7 @@
       <h1>Admin View</h1>
       <p>Signed In as: <%= current_user.email %></p>
       <p>Logout: <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?'} %></p>
+      <p>Servicios</p>
     <% end %>
     <%= yield %>
   </body>
